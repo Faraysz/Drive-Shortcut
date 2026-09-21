@@ -1,27 +1,56 @@
-# drive-pull
+<div align="center">
 
-Web sederhana untuk menarik file dari link share Google Drive. Alurnya
-mirip downloader video: tempel link → sistem cek metadata → klik download.
+# 🚀 Drive-Shortcut
 
-Bedanya dengan download manual lewat browser: untuk file yang cukup besar,
-server memecah file jadi beberapa bagian (chunk) dan menariknya dari Google
-secara paralel, baru menggabungkan dan mengirimkannya ke kamu sebagai satu
-file. Ini yang biasanya membuat prosesnya lebih cepat dan menghindari
-halaman "Google Drive can't scan this file for viruses" yang suka bikin
-download manual macet di tengah jalan.
+**Web app sederhana untuk download file Google Drive lebih cepat, stabil, dan tanpa batas "tidak dapat memindai virus"**
 
-## Struktur proyek
+[![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=flat&logo=php&logoColor=white)](https://php.net)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://javascript.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-```
-drive-downloader/
-├── index.html          # UI utama
-├── style.css
-├── script.js
-├── api/
-│   ├── config.php       # API key & pengaturan (edit ini)
-│   ├── helpers.php       # fungsi bantu (extract ID, panggil Drive API, dll)
-│   ├── resolve.php       # endpoint: link -> metadata file
-│   └── download.php      # endpoint: id -> stream file ke browser
+</div>
+
+---
+
+## 🎯 Apa itu Drive-Shortcut?
+
+Drive-Shortcut (drive-pull) adalah aplikasi web ringan yang dirancang untuk mengunduh file dari link berbagi Google Drive. 
+
+Berbeda dengan download manual lewat browser yang sering macet atau terkena halaman *"Google Drive tidak dapat memindai file ini untuk mencari virus"*, sistem ini bekerja dengan cara **memecah file besar menjadi beberapa bagian (chunk)**, menariknya dari server Google secara paralel, lalu menggabungkannya sebelum dikirim ke Anda. Hasilnya? Proses download yang **jauh lebih cepat dan stabil**.
+
+---
+
+## ✨ Fitur Utama
+
+| Fitur | Deskripsi |
+|---------|-------------|
+| ⚡ **Parallel Chunking** | Memecah file besar dan mengunduhnya secara paralel untuk kecepatan maksimal |
+| 🛡️ **Bypass Virus Scan Limit** | Menghindari halaman error "Google Drive can't scan this file for viruses" |
+| 📋 **Alur Simpel** | Tempel link → Cek metadata → Klik download (mirip downloader video) |
+| 🌐 **Tanpa Build Step** | Murni PHP & Vanilla JS, tidak butuh Node.js atau proses kompilasi |
+| 🚀 **Mudah Di-deploy** | Cukup upload ke shared hosting atau VPS, langsung jalan |
+
+---
+
+## 🚀 Panduan Cepat
+
+### Prasyarat
+- PHP 8.0 atau lebih baru (dengan ekstensi `curl` aktif, biasanya sudah default)
+- Akun Google Cloud (untuk mendapatkan API Key)
+
+### 1. Siapkan Google API Key
+1. Buka [Google Cloud Console](https://console.cloud.google.com/).
+2. Buat project baru (atau gunakan yang sudah ada).
+3. Buka **APIs & Services → Library**, cari **"Google Drive API"**, lalu klik **Enable**.
+4. Buka **APIs & Services → Credentials → Create Credentials → API Key**.
+5. Salin key yang muncul.
+6. *(Sangat Disarankan)* Klik key tersebut → **Restrict key** → pilih hanya "Google Drive API" di bagian API restrictions agar aman jika key bocor.
+
+### 2. Instalasi & Konfigurasi
+```bash
+# Clone repository ini
+git clone https://github.com/Faraysz/Drive-Shortcut.git
+cd Drive-Shortcut
 ```
 
 ## 1. Siapkan Google API Key
